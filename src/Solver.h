@@ -20,9 +20,9 @@ public:
 
 private:
     std::vector<std::shared_ptr<Cell>> mCells;
-    std::vector<std::shared_ptr<Block>> mBlocks;
+    std::vector<std::shared_ptr<Block>>  mBlocks;
     std::vector<std::shared_ptr<Column>> mColumns;
-    std::vector<std::shared_ptr<Row>> mRows;
+    std::vector<std::shared_ptr<Row>>    mRows;
 
     void makeCells(const std::vector<int>& nums);
     void makeGroups();
