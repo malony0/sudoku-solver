@@ -27,7 +27,7 @@ private:
     void makeCells(const std::vector<int>& nums);
     void makeGroups();
     void makeGroup(int groupIndex, Group::GroupType type);
-    // ƒOƒ‹[ƒv‚ÉŠ‘®‚·‚éƒ}ƒX‚ÌêŠ
+    // ã‚°ãƒ«ãƒ¼ãƒ—ã«æ‰€å±ã™ã‚‹ãƒã‚¹ã®å ´æ‰€
     std::vector<int> getCellIndices(int groupIndex, Group::GroupType type);
 };
 

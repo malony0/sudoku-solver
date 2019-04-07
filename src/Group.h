@@ -5,7 +5,7 @@
 
 class Cell;
 
-// Block, Row, Column‚Å‹¤’Ê‚Ì•”•ª
+// Block, Row, Columnã§å…±é€šã®éƒ¨åˆ†
 class Group
 {
 public:

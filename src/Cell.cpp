@@ -12,7 +12,7 @@ Cell::Cell(
     mNumber(number),
     mPosition(position)
 {
-    // ‰‚ß‚©‚ç”š‚ª–„‚Ü‚Á‚Ä‚¢‚éê‡AŒó•â‚ğ‚»‚ê‚Ì‚İ‚É‚·‚é
+    // åˆã‚ã‹ã‚‰æ•°å­—ãŒåŸ‹ã¾ã£ã¦ã„ã‚‹å ´åˆã€å€™è£œã‚’ãã‚Œã®ã¿ã«ã™ã‚‹
     if (isSolved())
     {
         mCandidates = 0b1 << (mNumber - 1);
@@ -23,7 +23,7 @@ Cell::~Cell()
 {
 }
 
-// TODO:QÆ“n‚µ‚¾‚Æ‚Ü‚¸‚¢H
+// TODO:å‚ç…§æ¸¡ã—ã ã¨ã¾ãšã„ï¼Ÿ
 void Cell::setGroup(const std::shared_ptr<Group>& group, Group::GroupType type)
 {
     switch (type)

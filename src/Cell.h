@@ -8,11 +8,11 @@ class Cell
 public:
     using PII = std::pair<int, int>;
 
-    // ‰Šú’l•s–¾‚È‚çnumber=0
+    // åˆæœŸå€¤ä¸æ˜ãªã‚‰number=0
     Cell(int number, PII position);
     ~Cell();
 
-    // Š‘®ƒOƒ‹[ƒv‚Ìİ’è
+    // æ‰€å±ã‚°ãƒ«ãƒ¼ãƒ—ã®è¨­å®š
     void setGroup(const std::shared_ptr<Group>& group, Group::GroupType type);
 
     bool isSolved() const;

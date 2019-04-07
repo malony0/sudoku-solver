@@ -27,7 +27,7 @@ void Row::draw() const
 
         if (n == 0)
         {
-            //‰ğ‚¯‚Ä‚¢‚È‚¢‚È‚ç‹ó”’
+            //è§£ã‘ã¦ã„ãªã„ãªã‚‰ç©ºç™½
             str.append(" ");
         }
         else
@@ -35,7 +35,7 @@ void Row::draw() const
             str.append(std::to_string(n));
         }
 
-        // ŠÔ‚É‹ó”’‚©–_‚ğ‹²‚Ş
+        // é–“ã«ç©ºç™½ã‹æ£’ã‚’æŒŸã‚€
         if ((i + 1) % 3 == 0)
         {
             str.append("|");

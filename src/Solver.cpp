@@ -14,7 +14,7 @@ namespace
     const int MAX_X = 9;
     const int MAX_Y = 9;
 
-    const std::string H_BAR = " -----+-----+-----";
+    const std::string H_BAR = "+-----+-----+-----+";
 }
 
 Solver::Solver(std::vector<int> nums):
@@ -69,7 +69,7 @@ void Solver::makeGroups()
 
 void Solver::makeGroup(int groupIndex, Group::GroupType type)
 {
-    // ƒOƒ‹[ƒv‚ÉŠ‘®‚·‚éƒ}ƒX
+    // ã‚°ãƒ«ãƒ¼ãƒ—ã«æ‰€å±ã™ã‚‹ãƒã‚¹
     std::vector<std::shared_ptr<Cell>> cells;
     std::vector<int> indices = getCellIndices(groupIndex, type);
     for (int index : indices)
@@ -77,7 +77,7 @@ void Solver::makeGroup(int groupIndex, Group::GroupType type)
         cells.push_back(mCells[index]);
     }
 
-    // ¶¬‚³‚ê‚éƒOƒ‹[ƒv
+    // ç”Ÿæˆã•ã‚Œã‚‹ã‚°ãƒ«ãƒ¼ãƒ—
     std::shared_ptr<Group> group;
     switch (type)
     {
@@ -95,7 +95,7 @@ void Solver::makeGroup(int groupIndex, Group::GroupType type)
             break;
     }   
     
-    // ƒ}ƒX‚Ìî•ñ‚ğXV
+    // ãƒã‚¹ã®æƒ…å ±ã‚’æ›´æ–°
     for (auto& cell : cells)
     {
         cell->setGroup(group, type);
