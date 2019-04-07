@@ -6,14 +6,18 @@
 #include "Cell.h"
 
 #include <cassert>
+#include <string>
+#include <iostream>
 
 namespace
 {
     const int MAX_X = 9;
     const int MAX_Y = 9;
+
+    const std::string H_BAR = " ---+---+---";
 }
 
-Solver::Solver(int* nums)
+Solver::Solver(std::vector<int> nums)
 {
     makeCells(nums);
     makeGroups();
@@ -24,7 +28,20 @@ Solver::~Solver()
 {
 }
 
-void Solver::makeCells(int* nums)
+void Solver::draw() const
+{
+    std::cout << H_BAR << std::endl;
+    for (int i = 0; i < 9; i++)
+    {
+        mRows[i]->draw();
+        if ((i+1) % 3 == 0)
+        {
+            std::cout << H_BAR << std::endl;
+        }
+    }
+}
+
+void Solver::makeCells(const std::vector<int>& nums)
 {
     for (int y = 0; y < MAX_Y; ++y)
     {

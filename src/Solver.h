@@ -13,8 +13,10 @@ class Row;
 class Solver
 {
 public:
-    Solver(int* nums);
+    Solver(std::vector<int> nums);
     ~Solver();
+
+    void draw() const;
 
 private:
     std::vector<std::shared_ptr<Cell>> mCells;
@@ -22,7 +24,7 @@ private:
     std::vector<std::shared_ptr<Column>> mColumns;
     std::vector<std::shared_ptr<Row>> mRows;
 
-    void makeCells(int* nums);
+    void makeCells(const std::vector<int>& nums);
     void makeGroups();
     void makeGroup(int groupIndex, Group::GroupType type);
     // グループに所属するマスの場所
