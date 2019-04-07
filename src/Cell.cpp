@@ -4,6 +4,8 @@
 #include "Row.h"
 #include "Column.h"
 
+#include <cassert>
+
 Cell::Cell(
     int number,
     PII position
@@ -28,7 +30,33 @@ void Cell::setNumber(int number)
     mNumber = number;
     mCandidates = 0b1 << (mNumber - 1);
 
-    //TODO: 更新通知
+    //更新通知
+    notifyUpdate();
+}
+
+void Cell::notifyUpdate()
+{
+    // まだグループがセットされてないなら通知しない
+    if (mBlock.expired() || mColumn.expired() || mRow.expired)
+    {
+        return;
+    }
+
+    std::shared_ptr<Group> block = mBlock.lock();
+    std::shared_ptr<Group> column = mColumn.lock();
+    std::shared_ptr<Group> row = mRow.lock();
+    if (block)
+    {
+        block->addFoundNumber(mNumber);
+    }
+    if (column)
+    {
+        column->addFoundNumber(mNumber);
+    }
+    if (row)
+    {
+        row->addFoundNumber(mNumber);
+    }
 }
 
 void Cell::setGroup(const std::shared_ptr<Group>& group, Group::GroupType type)
@@ -44,6 +72,12 @@ void Cell::setGroup(const std::shared_ptr<Group>& group, Group::GroupType type)
     case Group::GroupType::ROW:
         mRow = group;
         break;
+    }
+
+    // 数字が決まっているなら更新通知
+    if (isSolved())
+    {
+        notifyUpdate();
     }
 }
 

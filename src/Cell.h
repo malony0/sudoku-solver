@@ -38,5 +38,7 @@ private:
     std::weak_ptr<Group> mColumn;
 
     int bitToNum(unsigned short bit) const;
+    // グループに更新通知
+    void notifyUpdate();
 };
 
