@@ -16,21 +16,13 @@ Group::Group(int number, std::vector<std::shared_ptr<Cell>> cells):
 void Group::addFoundNumber(int number)
 {
     mFoundNumbers.push_back(number);
-
-    // 数字が見つかったマスをunsolvedから削除
-    for (auto itr = mUnsolvedCells.begin(); itr != mUnsolvedCells.end(); itr++)
-    {
-        auto& cell = *itr;
-        if (cell->getNumber() == number)
-        {
-            mUnsolvedCells.erase(itr);
-            return;
-        }
-    }
 }
 
 void Group::removeCandidates()
 {
+    // 候補を消す必要がないマスを外しておく
+    updateSolvedCells();
+
     // 更新されるのでコピーしておく
     auto foundNumbers = mFoundNumbers;
     mFoundNumbers.clear();
@@ -41,6 +33,27 @@ void Group::removeCandidates()
         for (auto& cell : mUnsolvedCells)
         {
             cell->removeCandidate(foundNumber);
+        }
+    }
+}
+
+bool Group::isSolved() const
+{
+    return mUnsolvedCells.empty();
+}
+
+void Group::updateSolvedCells()
+{
+    for (int number : mFoundNumbers)
+    {
+        for (auto itr = mUnsolvedCells.begin(); itr != mUnsolvedCells.end(); itr++)
+        {
+            auto& cell = *itr;
+            if (cell->getNumber() == number)
+            {
+                mUnsolvedCells.erase(itr);
+                break;
+            }
         }
     }
 }

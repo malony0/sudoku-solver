@@ -23,6 +23,7 @@ public:
     // 見つかった数字をマスの候補から削除
     void removeCandidates();
 
+    bool isSolved() const;
     virtual GroupType getType() const = 0;
 
 protected:
@@ -35,4 +36,8 @@ protected:
     std::vector<std::shared_ptr<Cell>> mCells;
     // まだ埋まっていないマス
     std::vector<std::shared_ptr<Cell>> mUnsolvedCells;
+
+private:
+    // 数字が決まったマスをunsolvedから削除
+    void updateSolvedCells();
 };

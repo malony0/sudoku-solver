@@ -37,7 +37,7 @@ void Cell::setNumber(int number)
 void Cell::notifyUpdate()
 {
     // まだグループがセットされてないなら通知しない
-    if (mBlock.expired() || mColumn.expired() || mRow.expired)
+    if (mBlock.expired() || mColumn.expired() || mRow.expired())
     {
         return;
     }
@@ -84,7 +84,7 @@ void Cell::setGroup(const std::shared_ptr<Group>& group, Group::GroupType type)
 void Cell::removeCandidate(int num)
 {
     unsigned short candidateBit = 0b1 << (num - 1);
-    mCandidates &= !candidateBit;
+    mCandidates &= ~candidateBit;
 
     if (countCandidate() == 1)
     {
@@ -100,7 +100,9 @@ int Cell::countCandidate() const
     unsigned short c = mCandidates - ((mCandidates >> 1) & 0x0055);
     c = (c & 0x0333) + ((c >> 2) & 0x0033);
     c = (c + (c >> 4)) & 0x0f0f;
-    return  c + (c >> 8);
+    c = c + (c >> 8);
+    
+    return c & 0xf;
 }
 
 bool Cell::isSolved() const
