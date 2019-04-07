@@ -29,11 +29,18 @@ int main()
     std::vector<int> nums = debugInput;
     std::unique_ptr<Solver> solver = std::make_unique<Solver>(nums);
 
-    // TODO: 変わらなくなっちゃったらストップ
+    bool changed;
     while(!solver->isSolved())
     {
-        solver->run();
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        changed = solver->run();
+
+        //内容に更新がなければ解けない問題
+        if (!changed)
+        {
+            std::cout << "Couldn't solve..." << std::endl;
+            return 0;
+        }
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
     std::cout << "Solved!" << std::endl;
 

@@ -18,10 +18,16 @@ void Group::addFoundNumber(int number)
     mFoundNumbers.push_back(number);
 }
 
-void Group::removeCandidates()
+bool Group::removeCandidates()
 {
     // 候補を消す必要がないマスを外しておく
     updateSolvedCells();
+
+    // 候補の更新がない場合
+    if (mFoundNumbers.empty())
+    {
+        return false;
+    }
 
     // 更新されるのでコピーしておく
     auto foundNumbers = mFoundNumbers;
@@ -35,6 +41,8 @@ void Group::removeCandidates()
             cell->removeCandidate(foundNumber);
         }
     }
+
+    return true;
 }
 
 bool Group::isSolved() const

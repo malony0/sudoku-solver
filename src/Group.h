@@ -21,7 +21,8 @@ public:
 
     void addFoundNumber(int number);
     // 見つかった数字をマスの候補から削除
-    void removeCandidates();
+    /// return: 削除があったかどうか
+    bool removeCandidates();
 
     bool isSolved() const;
     virtual GroupType getType() const = 0;

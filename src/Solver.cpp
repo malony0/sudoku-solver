@@ -33,15 +33,24 @@ Solver::~Solver()
 {
 }
 
-void Solver::run()
+bool Solver::run()
 {
+    bool changed = false;
+
     draw();
     
     for (auto& group : mGroups)
     {
-        group->removeCandidates();
+        changed |= group->removeCandidates();
     }
-  
+
+    // グループ内でそこにしか入れることができないやつ
+
+    // どっちに入るか分からないけどxかyは確定してる！　ってやつ
+
+    // 候補がここしかない！　って時に他のところに入らないやつ
+   
+    return changed;
 }
 
 void Solver::draw() const

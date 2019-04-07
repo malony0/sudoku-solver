@@ -16,10 +16,11 @@ public:
     Solver(std::vector<int> nums);
     ~Solver();
 
-    void run();
+    ///return: 内容に変更があったか
+    bool run();
 
     void draw() const;
-
+    
     bool isSolved() const;
 
 private:
