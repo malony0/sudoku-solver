@@ -19,6 +19,7 @@ namespace
 
 Solver::Solver(std::vector<int> nums):
     mCells  (std::vector<std::shared_ptr<Cell>>  (MAX_X * MAX_Y)),
+    mGroups(std::vector<std::shared_ptr<Group>>({})),
     mBlocks (std::vector<std::shared_ptr<Block>> (9)),
     mColumns(std::vector<std::shared_ptr<Column>>(MAX_X)),
     mRows   (std::vector<std::shared_ptr<Row>>   (MAX_Y))
@@ -32,6 +33,17 @@ Solver::~Solver()
 {
 }
 
+void Solver::run()
+{
+    draw();
+    
+    for (auto& group : mGroups)
+    {
+        group->removeCandidates();
+    }
+  
+}
+
 void Solver::draw() const
 {
     std::cout << H_BAR << std::endl;
@@ -43,6 +55,19 @@ void Solver::draw() const
             std::cout << H_BAR << std::endl;
         }
     }
+}
+
+bool Solver::isSolved() const
+{
+    for (auto& block : mBlocks)
+    {
+        if (!block->isSolved())
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void Solver::makeCells(const std::vector<int>& nums)
@@ -93,13 +118,15 @@ void Solver::makeGroup(int groupIndex, Group::GroupType type)
             mRows[groupIndex] = std::make_shared<Row>(groupIndex, cells);
             group = mRows[groupIndex];
             break;
-    }   
+    }
     
     // マスの情報を更新
     for (auto& cell : cells)
     {
         cell->setGroup(group, type);
     }
+
+    mGroups.push_back(group);
 }
 
 std::vector<int> Solver::getCellIndices(int groupIndex, Group::GroupType type)

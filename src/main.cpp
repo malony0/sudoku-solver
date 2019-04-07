@@ -4,6 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <thread>
 
 std::vector<int> getInput();
 std::vector<int> getRowInput();
@@ -27,7 +29,13 @@ int main()
     std::vector<int> nums = debugInput;
     std::unique_ptr<Solver> solver = std::make_unique<Solver>(nums);
 
-    solver->draw();
+    // TODO: 変わらなくなっちゃったらストップ
+    while(!solver->isSolved())
+    {
+        solver->run();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+    std::cout << "Solved!" << std::endl;
 
 	return 0;
 }

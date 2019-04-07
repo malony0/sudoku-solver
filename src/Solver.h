@@ -16,10 +16,19 @@ public:
     Solver(std::vector<int> nums);
     ~Solver();
 
+    void run();
+
     void draw() const;
 
+    bool isSolved() const;
+
 private:
+    // 全てのマス
     std::vector<std::shared_ptr<Cell>> mCells;
+    // 全てのグループ
+    std::vector<std::shared_ptr<Group>> mGroups;
+
+    //種類ごとのグループ
     std::vector<std::shared_ptr<Block>>  mBlocks;
     std::vector<std::shared_ptr<Column>> mColumns;
     std::vector<std::shared_ptr<Row>>    mRows;
