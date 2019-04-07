@@ -18,6 +18,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Column.cpp" />
+    <ClCompile Include="src\Group.cpp" />
+    <ClCompile Include="src\Row.cpp" />
+    <ClCompile Include="src\Block.cpp" />
+    <ClCompile Include="src\Cell.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Solver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Solver.h" />
+    <ClInclude Include="src\Column.h" />
+    <ClInclude Include="src\Block.h" />
+    <ClInclude Include="src\Cell.h" />
+    <ClInclude Include="src\Group.h" />
+    <ClInclude Include="src\Row.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{27F0F0EE-71DE-4B68-B128-4D30A52481A9}</ProjectGuid>
@@ -122,9 +139,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
