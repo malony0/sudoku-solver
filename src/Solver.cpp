@@ -113,7 +113,7 @@ std::vector<int> Solver::getCellIndices(int groupIndex, Group::GroupType type)
     case Group::GroupType::BLOCK:
         width = 3;
         height = 3;
-        startIndex = (groupIndex % 3) + (groupIndex / 3) * 27;
+        startIndex = 3 * (groupIndex % 3) + 27 * (groupIndex / 3);
         break;
 
     case Group::GroupType::COLUMN:
@@ -135,7 +135,7 @@ std::vector<int> Solver::getCellIndices(int groupIndex, Group::GroupType type)
     {
         for (int x = 0; x < width; ++x)
         {
-            int index = startIndex + x + y * width;
+            int index = startIndex + x + y * MAX_X;
             indices[x + y * width] = index;
         }
     }
