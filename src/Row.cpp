@@ -21,24 +21,30 @@ void Row::draw() const
 {
     std::string str = "|";
 
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 9; ++i)
     {
-        for (int j = 0; j < 3; ++j)
-        {
-            int cellId = i * 3 + j;
-            int n = mCells[cellId]->getNumber();
+        int n = mCells[i]->getNumber();
 
-            if (n == 0)
-            {
-                //‰ð‚¯‚Ä‚¢‚È‚¢‚È‚ç‹ó”’
-                str.append(" ");
-            }
-            else
-            {
-                str.append(std::to_string(n));
-            }
+        if (n == 0)
+        {
+            //‰ð‚¯‚Ä‚¢‚È‚¢‚È‚ç‹ó”’
+            str.append(" ");
         }
-        str.append("|");
+        else
+        {
+            str.append(std::to_string(n));
+        }
+
+        // ŠÔ‚É‹ó”’‚©–_‚ð‹²‚Þ
+        if ((i + 1) % 3 == 0)
+        {
+            str.append("|");
+        }
+        else
+        {
+            str.append(" ");
+        }
+        
     }
 
     std::cout << str << std::endl;
