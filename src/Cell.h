@@ -15,6 +15,14 @@ public:
     // 所属グループの設定
     void setGroup(const std::shared_ptr<Group>& group, Group::GroupType type);
 
+    // 番号決定
+    void setNumber(int number);
+
+    // 候補がいくつあるか
+    int countCandidate() const;
+
+    void removeCandidate(int num);
+
     bool isSolved() const;
     int getNumber() const;
     PII getPosition() const;
@@ -28,5 +36,7 @@ private:
     std::weak_ptr<Group> mBlock;
     std::weak_ptr<Group> mRow;
     std::weak_ptr<Group> mColumn;
+
+    int bitToNum(unsigned short bit) const;
 };
 
