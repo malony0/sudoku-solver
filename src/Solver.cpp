@@ -14,13 +14,14 @@ namespace
     const int MAX_X = 9;
     const int MAX_Y = 9;
 
-    const std::string H_BAR = " ---+---+---";
+    const std::string H_BAR = " -----+-----+-----";
 }
 
 Solver::Solver(std::vector<int> nums):
+    mCells  (std::vector<std::shared_ptr<Cell>>  (MAX_X * MAX_Y)),
     mBlocks (std::vector<std::shared_ptr<Block>> (9)),
-    mColumns(std::vector<std::shared_ptr<Column>>(9)),
-    mRows   (std::vector<std::shared_ptr<Row>>   (9))
+    mColumns(std::vector<std::shared_ptr<Column>>(MAX_X)),
+    mRows   (std::vector<std::shared_ptr<Row>>   (MAX_Y))
 {
     makeCells(nums);
     makeGroups();
@@ -51,7 +52,7 @@ void Solver::makeCells(const std::vector<int>& nums)
         for (int x = 0; x < MAX_X; ++x)
         {
             int index = x + y * MAX_X;
-            mCells.push_back(std::make_shared<Cell>(nums[index], Cell::PII(x, y)));
+            mCells[index] = std::make_shared<Cell>(nums[index], Cell::PII(x, y));
         }
     }
 }
