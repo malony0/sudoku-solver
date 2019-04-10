@@ -22,7 +22,8 @@ public:
     void addFoundNumber(int number);
     // 見つかった数字をマスの候補から削除
     /// return: 削除があったかどうか
-    bool removeCandidates();
+    bool removeCandidatesByFoundNumbers();
+    bool removeCandidatesByPrediction();
     // 指定した候補を持つマス
     std::vector<std::shared_ptr<Cell>> getCellsFromCandidate(int candidate) const;
 
@@ -46,4 +47,7 @@ protected:
 private:
     // 数字が決まったマスをunsolvedから削除
     void updateSolvedCells();
+
+    void predictByPosition(int number, const std::vector<std::shared_ptr<Cell>>& cells) const;
+    void _predictByPosition(int number, const std::vector<std::shared_ptr<Cell>>& cells, const std::shared_ptr<Group>& other) const;
 };

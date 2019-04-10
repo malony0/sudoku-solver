@@ -125,3 +125,13 @@ unsigned short Cell::getCandidateBit() const
 {
     return mCandidates;
 }
+
+std::shared_ptr<Group> Cell::getRow() const
+{
+    return mRow.lock();
+}
+
+std::shared_ptr<Group> Cell::getColumn() const
+{
+    return mColumn.lock();
+}

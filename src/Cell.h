@@ -27,6 +27,8 @@ public:
     int getNumber() const;
     PII getPosition() const;
     unsigned short getCandidateBit() const;
+    std::shared_ptr<Group> getRow() const; //weakのほうがよい？
+    std::shared_ptr<Group> getColumn() const;
 
 private:
 	unsigned short mCandidates; //987654321

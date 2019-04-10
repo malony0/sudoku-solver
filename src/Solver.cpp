@@ -41,12 +41,13 @@ bool Solver::run()
     
     for (auto& group : mGroups)
     {
-        changed |= group->removeCandidates();
+        changed |= group->removeCandidatesByFoundNumbers();
     }
 
-    // グループ内でそこにしか入れることができないやつ
-
-    // どっちに入るか分からないけどxかyは確定してる！　ってやつ
+    for (auto& group : mGroups)
+    {
+        changed |= group->removeCandidatesByPrediction();
+    }
 
     // 候補がここしかない！　って時に他のところに入らないやつ
    

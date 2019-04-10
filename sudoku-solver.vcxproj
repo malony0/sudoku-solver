@@ -28,6 +28,7 @@
     <ClCompile Include="src\Solver.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BitTools.h" />
     <ClInclude Include="src\Solver.h" />
     <ClInclude Include="src\Column.h" />
     <ClInclude Include="src\Block.h" />

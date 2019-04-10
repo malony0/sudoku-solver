@@ -16,5 +16,6 @@
     <ClInclude Include="src\Column.h" />
     <ClInclude Include="src\Group.h" />
     <ClInclude Include="src\Solver.h" />
+    <ClInclude Include="src\BitTools.h" />
   </ItemGroup>
 </Project>
