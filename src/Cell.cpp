@@ -3,6 +3,7 @@
 #include "Block.h"
 #include "Row.h"
 #include "Column.h"
+#include "BitTools.h"
 
 #include <cassert>
 
@@ -28,7 +29,7 @@ Cell::~Cell()
 void Cell::setNumber(int number)
 {
     mNumber = number;
-    mCandidates = 0b1 << (mNumber - 1);
+    mCandidates = BitTools::numToBit(number);
 
     //更新通知
     notifyUpdate();
@@ -83,12 +84,12 @@ void Cell::setGroup(const std::shared_ptr<Group>& group, Group::GroupType type)
 
 void Cell::removeCandidate(int num)
 {
-    unsigned short candidateBit = 0b1 << (num - 1);
+    unsigned short candidateBit = BitTools::numToBit(num);
     mCandidates &= ~candidateBit;
 
     if (countCandidate() == 1)
     {
-        int number = bitToNum(mCandidates);
+        int number = BitTools::bitToNum(mCandidates);
         setNumber(number);
     }
 }
@@ -118,18 +119,4 @@ int Cell::getNumber() const
 Cell::PII Cell::getPosition() const
 {
     return mPosition;
-}
-
-int Cell::bitToNum(unsigned short bit) const
-{
-    for (int number = 1; number <= 9; ++number)
-    {
-        if ((bit & 0b1) == 1)
-        {
-            return number;
-        }
-        bit = bit >> 1;
-    }
-
-    return 0;
 }
