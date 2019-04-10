@@ -1,5 +1,6 @@
 #include "Group.h"
 #include "Cell.h"
+#include "BitTools.h"
 
 #include <cassert>
 
@@ -23,7 +24,7 @@ bool Group::removeCandidates()
     // 候補を消す必要がないマスを外しておく
     updateSolvedCells();
 
-    // 候補の更新がない場合
+    // 候補の更新がない場合は何もしない
     if (mFoundNumbers.empty())
     {
         return false;
@@ -34,6 +35,7 @@ bool Group::removeCandidates()
     mFoundNumbers.clear();
     mFoundNumbers.shrink_to_fit();
 
+    // 出現した数字を候補から消す
     for (int foundNumber : foundNumbers)
     {
         for (auto& cell : mUnsolvedCells)
@@ -44,6 +46,23 @@ bool Group::removeCandidates()
 
     return true;
 }
+
+std::vector<std::shared_ptr<Cell>> Group::getCellsFromCandidate(int candidate) const
+{
+    unsigned short candidateBit = BitTools::numToBit(candidate);
+    std::vector<std::shared_ptr<Cell>> cells = {};
+
+    for (auto& cell : mUnsolvedCells)
+    {
+        if (cell->getCandidateBit & candidateBit)
+        {
+            cells.push_back(cell);
+        }
+    }
+
+    return cells;
+}
+
 
 bool Group::isSolved() const
 {

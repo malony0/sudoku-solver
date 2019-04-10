@@ -23,6 +23,8 @@ public:
     // 見つかった数字をマスの候補から削除
     /// return: 削除があったかどうか
     bool removeCandidates();
+    // 指定した候補を持つマス
+    std::vector<std::shared_ptr<Cell>> getCellsFromCandidate(int candidate) const;
 
     bool isSolved() const;
     virtual GroupType getType() const = 0;

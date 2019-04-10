@@ -26,6 +26,7 @@ public:
     bool isSolved() const;
     int getNumber() const;
     PII getPosition() const;
+    unsigned short getCandidateBit() const;
 
 private:
 	unsigned short mCandidates; //987654321

@@ -120,3 +120,8 @@ Cell::PII Cell::getPosition() const
 {
     return mPosition;
 }
+
+unsigned short Cell::getCandidateBit() const
+{
+    return mCandidates;
+}
