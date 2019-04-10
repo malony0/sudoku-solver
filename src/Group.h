@@ -33,6 +33,9 @@ protected:
     static const int LENGTH = 9;
 
     int mNumber;
+
+    // このグループでまだ見つかっていない数字
+    std::vector<int> mUnsolvedNumbers;
     // このグループで新しく見つかった数字
     std::vector<int> mFoundNumbers;
     // すべてのマス

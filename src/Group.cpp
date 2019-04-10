@@ -5,18 +5,28 @@
 #include <cassert>
 
 Group::Group(int number, std::vector<std::shared_ptr<Cell>> cells):
-    mFoundNumbers({})
+    mNumber(number),
+    mUnsolvedNumbers({1,2,3,4,5,6,7,8,9}),
+    mFoundNumbers({}),
+    mCells(cells),
+    mUnsolvedCells(cells)
 {
     assert(cells.size() == LENGTH);
-
-    mNumber = number;
-    mCells = cells;
-    mUnsolvedCells = cells;
 }
 
 void Group::addFoundNumber(int number)
 {
     mFoundNumbers.push_back(number);
+ 
+    // 見つかっていない数字からは消しておく
+    for (auto itr = mUnsolvedNumbers.begin(); itr != mUnsolvedNumbers.end(); ++itr)
+    {
+        if (*itr == number)
+        {
+            mUnsolvedNumbers.erase(itr);
+            return;
+        }
+    }
 }
 
 bool Group::removeCandidates()
